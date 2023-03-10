@@ -1,37 +1,36 @@
 <template>
-    <div>
-        <p class="uppercase m-1  text-xs">{{ title }}</p>
+    <div class="mb-5">
+        <p class="uppercase m-1 text-xs">{{ title }}</p>
         <input 
-            class="rounded-lg border border-grayishViolet-light focus:outline-none focus:border-l-gradient-a focus:border-t-gradient-a focus:border-r-gradient-b focus:border-b-gradient-b focus:ring-1 focus:ring-gradient-a p-2 m-1 mb-5 w-full"
+            class="
+                rounded-lg border 
+                border-grayishViolet-light 
+                focus:outline-none 
+                focus:border-l-gradient-a 
+                focus:border-t-gradient-a 
+                focus:border-r-gradient-b 
+                focus:border-b-gradient-b 
+                focus:ring-1 
+                focus:ring-gradient-a
+                p-2 m-1 w-full"
+            :class="error ? `border-red ring-red` : ``"
             :type="type" 
-            :placeholder="value"
-            v-model="model"
-            @input="$emit('model', input)"
+            :placeholder="text"
+            :value="modelValue"
+            @input="$emit('update:modelValue', $event.target.value)"
         >
-        <!-- {{ state }} -->
-        {{ model }}
+        <p v-for="err in error" class="text-red text-sm">
+            {{ err.$message }}
+        </p>
     </div>
 </template>
 
 <script setup>
-import { computed } from "@vue/runtime-dom"
-
 defineProps({
-    // state: { type: Object, required: true},
     title: String,
     type: String,
-    value: String,
-    model: String,
+    text: String,
+    modelValue: String | Number,
+    error: Object
 })
-
-// const name = computed(
-//     (value) => {
-//         state.name = value
-//         return state.name
-//     }
-// )
-
-// const name = $props.model
-
-// const vModel = `$props.state.${$props.model}`
 </script>
