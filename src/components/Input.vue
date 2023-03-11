@@ -6,14 +6,9 @@
                 rounded-lg border 
                 border-grayishViolet-light 
                 focus:outline-none 
-                focus:border-l-gradient-a 
-                focus:border-t-gradient-a 
-                focus:border-r-gradient-b 
-                focus:border-b-gradient-b 
-                focus:ring-1 
-                focus:ring-gradient-a
+                focus:ring-1
                 p-2 m-1 w-full"
-            :class="error ? `border-red ring-red` : ``"
+            :class="error.length != 0 ? `border-red` : ``"
             :type="type" 
             :placeholder="text"
             :value="modelValue"
@@ -34,3 +29,15 @@ defineProps({
     error: Object
 })
 </script>
+
+<style scoped>
+input:focus {
+  padding: 0.5rem;
+  border: double 1px transparent;
+  border-radius: 0.5rem;
+  background-image: linear-gradient(white, white), 
+                    linear-gradient(to right, #6448FE, #600594);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+</style>
