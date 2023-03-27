@@ -7,11 +7,13 @@ import { required, numeric, helpers, minLength, maxLength, between } from '@vuel
 import Input from '../components/Input.vue';
 import Button from './Button.vue';
 
-const state = inject('state')
+// const state = inject('state')
 
-// defineProps({
-//   state: Object
-// })
+const props = defineProps({
+  state: Object
+})
+
+const emit = defineEmits(['change'])
 
 const rules = {
   name: { required: helpers.withMessage("Can't be blank", required) },
@@ -41,26 +43,26 @@ const rules = {
   }
 }
 
-const v$ = useVuelidate(rules, state)
+const v$ = useVuelidate(rules, props.state)
 
-state.name = v$.value.name.$model
-state.number = v$.value.number.$model
-state.month = v$.value.month.$model
-state.year = v$.value.year.$model
-state.cvc = v$.value.cvc.$model
+props.state.name = v$.value.name.$model
+props.state.number = v$.value.number.$model
+props.state.month = v$.value.month.$model
+props.state.year = v$.value.year.$model
+props.state.cvc = v$.value.cvc.$model
 
 function submit() {
   v$.value.$touch()
   v$.value.$validate
   console.log(v$.value)
   if (!v$.value.$error) { 
-    state.name = null
-    state.number = null
-    state.month = null
-    state.year = null
-    state.cvc = null
+    props.state.name = null
+    props.state.number = null
+    props.state.month = null
+    props.state.year = null
+    props.state.cvc = null
     v$.value.$reset()
-    router.push('/success')
+    emit('change', 'Success')
   }
 }
 

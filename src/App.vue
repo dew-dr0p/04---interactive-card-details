@@ -1,6 +1,7 @@
 <script setup>
-import { reactive, provide } from 'vue';
-import Form from '@/components/Form.vue';
+import { reactive, provide, ref } from 'vue';
+import Form from './components/Form.vue';
+import Success from './components/Success.vue';
 
 const state = reactive({
   name: null,
@@ -10,7 +11,14 @@ const state = reactive({
   cvc: null,
 })
 
-provide('state', state)
+const component = ref('Form')
+
+const components = {
+  Form,
+  Success,
+}
+
+// provide('state', state)
 
 console.log(state)
 
@@ -44,6 +52,6 @@ console.log(state)
       {{state.cvc ? state.cvc : '000'}}
     </p>
   </div>
-  <component :is="Form" :state="state"/>
+  <component :is="components[component]" :state="state" @change="(e => component = e)" />
   <!-- <Form :state="state" /> -->
 </template>
