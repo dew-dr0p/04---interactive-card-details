@@ -1,13 +1,11 @@
 <script setup>
 import { computed } from '@vue/reactivity';
 import { inject, reactive, ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router'
+// import { useRouter, useRoute } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required, numeric, helpers, minLength, maxLength, between } from '@vuelidate/validators'
 import Input from '../components/Input.vue';
 import Button from './Button.vue';
-
-const router = useRouter()
 
 const state = inject('state')
 
@@ -69,7 +67,7 @@ function submit() {
 </script>
 
 <template>
-  <form action="" @submit.prevent="submit()" class="m-auto max-w-md relative mr-40">
+  <form action="" @submit.prevent="submit()" class="m-auto max-w-sm absolute top-[30%] right-1 mr-52">
     <Input 
       title="Cardholder Name" 
       type="text" 
@@ -86,15 +84,15 @@ function submit() {
     />
     <div class="flex flex-row">
       <Input 
-        title="Expiry Date" 
+        title="Exp. Date (mm/yy)" 
         type="number" 
         text="MM" 
         :error="v$.month.$errors"
-        class="basis-1/4 mr-5" 
+        class="basis-1/4 mr-3 w-16" 
         v-model="v$.month.$model" 
       />
       <Input 
-        title="  (mm/yy)" 
+        title="" 
         type="number" 
         text="YY" 
         :error="v$.year.$errors"

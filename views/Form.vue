@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from '@vue/reactivity';
 import { inject, reactive, ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router'
+// import { useRouter, useRoute } from 'vue-router'
 import { useVuelidate } from '@vuelidate/core'
 import { required, numeric, helpers, minLength, maxLength, between } from '@vuelidate/validators'
 import Input from '../components/Input.vue';

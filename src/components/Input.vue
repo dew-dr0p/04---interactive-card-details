@@ -1,6 +1,11 @@
 <template>
-    <div class="mb-5">
-        <p class="uppercase m-1 text-xs">{{ title }}</p>
+    <div class="mb-5 overflow-visible">
+        <div v-if="title">
+            <p class="uppercase m-1 text-xs h-3 overflow-visible w-max" style="letter-spacing: 0.15rem;">{{ title }}</p>
+        </div>
+        <div v-else>
+            <div class="m-5"></div>
+        </div>
         <input 
             class="
                 rounded-lg border 
